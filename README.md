@@ -402,11 +402,10 @@ bot/
 ## 联系方式
 
 - 项目维护者：[Cang-Fang]
-- 邮箱：[1753013007@qq.com]
 - 项目地址：[https://github.com/Cang-Fang/xingchen_dialogue]
 
 ## 致谢
 
 - 感谢讯飞星辰MaaS平台提供的强大模型API
-- 感谢所有为项目做出贡献的开发者
 - 感谢社区的支持和反馈
+- 感谢TRAE提供的强大编程能力
