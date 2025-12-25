@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能聊天机器人</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="chat-container">
+        <header class="chat-header">
+            <h1>智能聊天机器人</h1>
+            <div class="header-actions">
+                <button id="clear-btn" class="btn btn-secondary">清空上下文</button>
+                <button id="settings-btn" class="btn btn-secondary">设置</button>
+            </div>
+        </header>
+        
+        <main class="chat-main">
+            <div id="chat-messages" class="chat-messages">
+                <div class="message bot-message">
+                    <div class="message-content">
+                        <p>你好！我是智能聊天机器人，很高兴为你服务。有什么可以帮助你的吗？</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-input-area">
+                <div class="input-container">
+                    <textarea 
+                        id="message-input" 
+                        class="message-input" 
+                        placeholder="请输入你的问题或消息..." 
+                        rows="1"
+                    ></textarea>
+                    <button id="send-btn" class="btn btn-primary">发送</button>
+                </div>
+                <div class="typing-indicator" id="typing-indicator" style="display: none;">
+                    <span>正在思考...</span>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="chat-footer">
+            <p>© 2025 智能聊天机器人 - 基于讯飞星辰MaaS平台</p>
+        </footer>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script>
+        // 会话ID
+        const SESSION_ID = "{{ session_id }}";
+    </script>
+</body>
+</html>
