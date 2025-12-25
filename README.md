@@ -95,7 +95,7 @@ XFYUN_CONFIG = {
     "app_id": "your_app_id",  # 替换为实际的app_id
     "api_key": "your_api_key",  # 替换为实际的api_key
     "api_secret": "your_api_secret",  # 替换为实际的api_secret
-    "model_id": "ChatQwen3-1.7B",  # 模型ID
+    "model_id": "your_model_id",  # 模型ID
     "host": "maas-api.cn-huabei-1.xf-yun.com",  # API主机地址
     "path": "/v1.1/chat"  # API路径
 }
@@ -409,3 +409,4 @@ bot/
 - 感谢讯飞星辰MaaS平台提供的强大模型API
 - 感谢社区的支持和反馈
 - 感谢TRAE提供的强大编程能力
+
