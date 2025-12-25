@@ -1,0 +1,2 @@
+# xingchen_dialogue
+一个基于讯飞星辰MaaS平台的模型API的半成品对话框，具备自然语言对话交互的能力。
