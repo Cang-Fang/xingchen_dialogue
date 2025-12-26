@@ -92,9 +92,9 @@ class ChatApp {
         const contentDiv = document.createElement('div');
         contentDiv.className = 'message-content';
         
-        // 将文本内容转换为HTML，处理换行
-        const formattedContent = content.replace(/\n/g, '<br>');
-        contentDiv.innerHTML = `<p>${formattedContent}</p>`;
+        // 解析Markdown格式的内容
+        const formattedContent = this.parseMarkdown(content);
+        contentDiv.innerHTML = formattedContent;
         
         // 添加参考信息
         if (refInfo && refInfo.length > 0) {
@@ -119,6 +119,41 @@ class ChatApp {
         
         // 滚动到底部
         this.scrollToBottom();
+    }
+    
+    parseMarkdown(text) {
+        // 检查是否包含Markdown格式
+        if (this.containsMarkdown(text)) {
+            // 使用marked库解析Markdown
+            return marked.parse(text, {
+                breaks: true, // 支持换行
+                gfm: true,    // 支持GitHub风格的Markdown
+                sanitize: false // 允许HTML标签
+            });
+        } else {
+            // 普通文本，仅处理换行
+            return `<p>${text.replace(/\n/g, '<br>')}</p>`;
+        }
+    }
+    
+    containsMarkdown(text) {
+        // 简单检测是否包含常见的Markdown语法
+        const markdownPatterns = [
+            /^#\s/,              // 标题
+            /^##\s/,             // 二级标题
+            /^###\s/,            // 三级标题
+            /^-\s/,              // 无序列表
+            /^\*\s/,             // 无序列表
+            /^\d+\.\s/,         // 有序列表
+            /\*\*.+\*\*/,       // 粗体
+            /\*.+\*/,           // 斜体
+            /`.+`/,              // 代码
+            /^```/,              // 代码块开始
+            /\[.+\]\(.+\)/,     // 链接
+            /!\[.+\]\(.+\)/     // 图片
+        ];
+        
+        return markdownPatterns.some(pattern => pattern.test(text));
     }
     
     showTypingIndicator() {
