@@ -92,9 +92,28 @@ if __name__ == '__main__':
     cleaner = SessionCleaner()
     cleaner.start()
     
-    print(f"聊天机器人服务启动在 http://{APP_CONFIG['host']}:{APP_CONFIG['port']}")
+    # 完全禁用Flask的日志输出，只保留自定义输出
+    import logging
+    
+    # 禁用werkzeug日志器
+    log = logging.getLogger('werkzeug')
+    log.setLevel(logging.CRITICAL)  # 只记录致命错误
+    
+    # 禁用Flask的默认日志配置
+    logging.getLogger('flask').setLevel(logging.CRITICAL)
+    
+    # 自定义启动消息
+    print(f"智能聊天机器人服务已启动")
+    print(f"访问地址: http://127.0.0.1:{APP_CONFIG['port']}")
+    print(f"调试模式: {'开启' if APP_CONFIG['debug'] else '关闭'}")
+    print("按 CTRL+C 停止服务")
+    print("=" * 50)
+    
+    # 启动服务器，使用更简洁的配置
     app.run(
         host=APP_CONFIG['host'],
         port=APP_CONFIG['port'],
-        debug=APP_CONFIG['debug']
+        debug=APP_CONFIG['debug'],
+        use_reloader=False,  # 禁用自动重载，减少控制台输出
+        threaded=True  # 启用多线程，提高性能
     )
